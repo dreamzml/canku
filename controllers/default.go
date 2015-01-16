@@ -21,7 +21,7 @@ type ForgetController struct {
 }
 
 func (c *HomeController) Get() {
-
+	c.TplNames = "layout.tpl"
 }
 
 func (c *LoginController) Get() {
