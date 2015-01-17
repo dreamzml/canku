@@ -1,27 +1,25 @@
 package controllers
 
-import (
-	"github.com/astaxie/beego"
-)
-
 type HomeController struct {
-	beego.Controller
+	BaseController
 }
 type LoginController struct {
-	beego.Controller
+	BaseController
 }
 type LogoutController struct {
-	beego.Controller
+	BaseController
 }
 type RegisterController struct {
-	beego.Controller
+	BaseController
 }
 type ForgetController struct {
-	beego.Controller
+	BaseController
 }
 
-func (c *HomeController) Get() {
-	c.TplNames = "layout.tpl"
+func (c *HomeController) Get(){
+	//c.Data["title"] = "canku点餐系统"
+	c.Data["cur"] = "home";
+	c.TplNames = "home/index.tpl" 
 }
 
 func (c *LoginController) Get() {
