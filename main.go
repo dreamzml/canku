@@ -8,5 +8,8 @@ import (
 func main() {
 	beego.SetStaticPath("css", "static/css")
 	beego.SetStaticPath("js", "static/js")
+
+	beego.SessionOn = true
+
 	beego.Run()
 }
