@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	//"canku/models"
+	"canku/models"
 	//"fmt"
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
-	"log"
+	//"log"
 )
 
 type UserController struct {
@@ -34,21 +35,19 @@ func (this *UserController) Login() {
 func (this *UserController) Signup() {
 
 	beego.AutoRender = false
+	errmsg := make(map[string]string)
 	requestEmail := this.GetString("email")
 	requestPassword := this.GetString("password")
-	//this.Ctx.WriteString(requestEmail)
-	u := user{requestEmail, requestPassword}
+
 	valid := validation.Validation{}
-	valid.Required(u.Email, "email")
-	valid.MaxSize(u.Email, 40, "emailMax")
-	valid.Required(u.Password, "password")
-	if valid.HasErrors() {
-		for _, err := range valid.Errors {
-			log.Println(err.Key, err.Message)
-		}
+	if v := valid.Required(requestEmail, "email"); !v.Ok {
+		errmsg["email"] = "请输入邮箱地址"
+	} else if v := valid.MaxSize(requestEmail, 40, "email"); !v.Ok {
+		errmsg["email"] = "邮箱地址长度不能大于40个字符"
 	}
-	//this.Ctx.WriteString(email)
-	//this.UserModel.insert(email, nickname, password)
+	var user models.User
+	user.Email = requestEmail
+	user.Password = models.Md5([]byte(requestPassword))
 
 }
 

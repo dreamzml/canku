@@ -16,20 +16,6 @@ type User struct {
 	Isadmin   int8
 }
 
-func (m *User) TableName() {
-	return TableName("user")
-}
-
 func (m *User) Insert() {
-	if _, err := orm.NewOrm().Insert(m); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *User) Read(fields ...string) error {
-	if err := orm.NewOrm().Read(m, fields...); err != nil {
-		return err
-	}
-	return nil
+	orm.NewOrm().Insert(m)
 }

@@ -2,6 +2,7 @@ package models
 
 import (
 	"crypto/md5"
+	"fmt"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
