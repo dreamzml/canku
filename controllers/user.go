@@ -63,7 +63,30 @@ func (this *UserController) Register() {
 
 func (this *UserController) Join() {
 	beego.AutoRender = false
-	//this.user.Insert(user)
+	errmsg := make(map[string]string)
+	requestEmail := this.GetString("email")
+	requestNickname := this.GetString("nickname")
+	requestPassword := this.GetString("password")
+
+	valid := validation.Validation{}
+	if v := valid.Required(requestEmail, "email"); !v.Ok {
+		errmsg["email"] = "请输入邮箱地址"
+	} else if v := valid.MaxSize(requestEmail, 40, "email"); !v.Ok {
+		errmsg["email"] = "邮箱地址长度不能大于40个字符"
+	}
+
+	if v := valid.Required(requestNickname, "nickname"); !v.Ok {
+		errmsg["nickname"] = "请输入昵称"
+	} else if v := valid.MaxSize(requestNickname, 20, "nickname"); !v.Ok {
+		errmsg["nickname"] = "昵称长度不能大于20个字符"
+	}
+
+	var user models.User
+	user.Email = requestEmail
+	user.Nickname = requestNickname
+	user.Password = models.Md5([]byte(requestPassword))
+	models.Init()
+	user.Insert()
 }
 
 /**

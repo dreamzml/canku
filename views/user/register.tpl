@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="auth_form">
-    <form class="session_form" method="post" action="/register">
+    <form class="session_form" method="post" action="/join">
         <h1>餐库 › 注册</h1>
         <div class="item">
             <input type="text" id="email" name="email" class="input" placeholder="邮箱" title="你的常用邮箱" required=""/>

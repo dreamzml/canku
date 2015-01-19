@@ -12,7 +12,7 @@ func init() {
 	beego.Router("/signup", &controllers.UserController{}, "post:Signup")    // 登录逻辑判断
 	beego.Router("/logout", &controllers.UserController{})                   // 退出
 	beego.Router("/register", &controllers.UserController{}, "get:Register") // 注册页面
-	beego.Router("/register", &controllers.UserController{}, "post:Join")    // 注册逻辑处理
+	beego.Router("/join", &controllers.UserController{}, "post:Join")        // 注册逻辑处理
 	beego.Router("/forget", &controllers.UserController{}, "get:Forget")     // 忘记密码
 
 }

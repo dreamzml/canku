@@ -8,7 +8,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func init() {
+func Init() {
 	dbdriver := beego.AppConfig.String("dbdriver")
 	dbhost := beego.AppConfig.String("dbhost")
 	dbport := beego.AppConfig.String("dbport")
@@ -19,7 +19,7 @@ func init() {
 		dbport = "3306"
 	}
 	dburl := dbuser + ":" + dbpass + "@tcp(" + dbhost + ":" + dbport + ")/" + dbname + "?charset=utf8"
-	orm.RegisterDataBase("default", dbdriver, dburl)
+	orm.RegisterDataBase("default", dbdriver, dburl, 30)
 	orm.RegisterModel(new(User))
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
