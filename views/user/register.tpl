@@ -11,10 +11,10 @@
     <form class="session_form" method="post" action="/join">
         <h1>餐库 › 注册</h1>
         <div class="item">
-            <input type="text" id="email" name="email" class="input" placeholder="邮箱" title="你的常用邮箱" required=""/>
+            <input type="text" id="email" name="email" class="input" placeholder="邮箱" title="你的常用邮箱" required="" maxlength="40"/>
         </div>
         <div class="item">
-            <input type="text" id="nickname" name="nickname" class="input" placeholder="姓名" title="用中文怎么称呼你" required="" maxlength="4"/>
+            <input type="text" id="nickname" name="nickname" class="input" placeholder="姓名" title="用中文怎么称呼你" required="" maxlength="20"/>
         </div>
         <div class="item">
             <input type="password" id="password" name="password" class="input" placeholder="密码" title="设置一个密码" required="" maxlength="16"/>

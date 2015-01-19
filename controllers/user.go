@@ -85,7 +85,6 @@ func (this *UserController) Join() {
 	user.Email = requestEmail
 	user.Nickname = requestNickname
 	user.Password = models.Md5([]byte(requestPassword))
-	models.Init()
 	user.Insert()
 }
 

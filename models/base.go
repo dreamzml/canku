@@ -8,7 +8,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func Init() {
+func init() {
 	dbdriver := beego.AppConfig.String("dbdriver")
 	dbhost := beego.AppConfig.String("dbhost")
 	dbport := beego.AppConfig.String("dbport")

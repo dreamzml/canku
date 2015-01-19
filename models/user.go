@@ -1,14 +1,14 @@
 package models
 
 import (
-	"fmt"
+	//"fmt"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import mysql driver
 	"time"
 )
 
 type User struct {
-	Id        int64     `orm:"pk"`
+	Id        int64     `orm:"auto"`
 	Email     string    `orm:"size(40)"`
 	Nickname  string    `orm:"unique;size(20)"`
 	Password  string    `orm:"size(32)"`
@@ -18,5 +18,5 @@ type User struct {
 
 func (m *User) Insert() {
 	o := orm.NewOrm()
-	fmt.Println(o.Insert(m))
+	o.Insert(m)
 }
