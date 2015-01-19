@@ -11,35 +11,41 @@
 
     <div class="row">
       <div class="col-xs-6 col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div><!--/.col-xs-6.col-lg-4-->
+        <h3>食其家(广中西路店)</h3>
+        <p><img src="/static/img/shiqijia.png" class="img-responsive" alt="Responsive image"></p>
+        <a class="btn btn-default" href="#" role="button">查看详情 &raquo;</a>
+      </div>
+
       <div class="col-xs-6 col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div><!--/.col-xs-6.col-lg-4-->
+        <h3>味千拉面(大宁店)</h3>
+        <p><img src="/static/img/weiqian.png" class="img-responsive" alt="Responsive image"></p>
+        <a class="btn btn-default" href="#" role="button">查看详情 &raquo;</a>
+      </div>
+
       <div class="col-xs-6 col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div><!--/.col-xs-6.col-lg-4-->
+        <h3>汉堡王(大宁店)</h3>
+        <p><img src="/static/img/hanbaowang.png" class="img-responsive" alt="Responsive image"></p>
+        <a class="btn btn-default" href="#" role="button">查看详情 &raquo;</a>
+      </div>
+
       <div class="col-xs-6 col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div><!--/.col-xs-6.col-lg-4-->
+        <h3>麻辣诱惑(大宁店)</h3>
+        <p><img src="/static/img/malayouhuo.jpg" class="img-responsive" alt="Responsive image"></p>
+        <a class="btn btn-default" href="#" role="button">查看详情 &raquo;</a>
+      </div>
+
       <div class="col-xs-6 col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div><!--/.col-xs-6.col-lg-4-->
+        <h3>宏港烧腊便当</h3>
+        <p><img src="/static/img/gangshaola.png" class="img-responsive" alt="Responsive image"></p>
+        <a class="btn btn-default" href="#" role="button">查看详情 &raquo;</a>
+      </div>
+
       <div class="col-xs-6 col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-      </div><!--/.col-xs-6.col-lg-4-->
+        <h3>众湘汇</h3>
+        <p><img src="/static/img/zhongxianghui.png" class="img-responsive" alt="Responsive image"></p>
+        <a class="btn btn-default" href="#" role="button">查看详情 &raquo;</a>
+      </div>
+
     </div><!--/row-->
   </div><!--/.col-xs-12.col-sm-9-->
 
