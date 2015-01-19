@@ -48,7 +48,7 @@ func (this *UserController) Signup() {
 	var user models.User
 	user.Email = requestEmail
 	user.Password = models.Md5([]byte(requestPassword))
-
+	user.Read()
 }
 
 /**
@@ -57,10 +57,14 @@ func (this *UserController) Signup() {
 func (this *UserController) Register() {
 	//去掉布局
 	this.Layout = ""
-
 	this.TplNames = "user/register.tpl"
 }
 
+/**
+ * 注册逻辑处理
+ * @param  {[type]} this *UserController) Join( [description]
+ * @return {[type]}      [description]
+ */
 func (this *UserController) Join() {
 	beego.AutoRender = false
 	errmsg := make(map[string]string)
@@ -81,11 +85,16 @@ func (this *UserController) Join() {
 		errmsg["nickname"] = "昵称长度不能大于20个字符"
 	}
 
-	var user models.User
-	user.Email = requestEmail
-	user.Nickname = requestNickname
-	user.Password = models.Md5([]byte(requestPassword))
-	user.Insert()
+	if len(errmsg) == 0 {
+		var user models.User
+		user.Email = requestEmail
+		user.Nickname = requestNickname
+		user.Password = models.Md5([]byte(requestPassword))
+		if err := user.Insert(); err != nil {
+			this.Ctx.WriteString(err.Error())
+		}
+		this.Redirect("/", 302)
+	}
 }
 
 /**
