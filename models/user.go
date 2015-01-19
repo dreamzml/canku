@@ -1,7 +1,7 @@
 package models
 
 import (
-	//"fmt"
+	"fmt"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import mysql driver
 	"time"
@@ -18,5 +18,17 @@ type User struct {
 
 func (m *User) Insert() {
 	o := orm.NewOrm()
-	o.Insert(m)
+	id, err := o.Insert(m)
+	if err == nil {
+		fmt.Println(id)
+	}
+}
+
+func (m *User) Read() {
+	var user User
+	o := orm.NewOrm()
+	err := o.Raw("SELECT id, nickname FROM user WHERE email = ? AND password = ?", m.Email, m.Password).QueryRow(&user)
+	if err == nil {
+		fmt.Println(user.Email)
+	}
 }
