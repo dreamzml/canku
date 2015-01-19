@@ -8,13 +8,13 @@
 </head>
 <body>
 <div class="auth_form">
-    <form class="session_form" method="post">
+    <form class="session_form" method="post" action="/register">
         <h1>餐库 › 注册</h1>
         <div class="item">
             <input type="text" id="email" name="email" class="input" placeholder="邮箱" title="你的常用邮箱" required=""/>
         </div>
         <div class="item">
-            <input type="text" id="name" name="name" class="input" placeholder="姓名" title="用中文怎么称呼你" required="" maxlength="4"/>
+            <input type="text" id="nickname" name="nickname" class="input" placeholder="姓名" title="用中文怎么称呼你" required="" maxlength="4"/>
         </div>
         <div class="item">
             <input type="password" id="password" name="password" class="input" placeholder="密码" title="设置一个密码" required="" maxlength="16"/>

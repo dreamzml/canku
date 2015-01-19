@@ -8,10 +8,10 @@
 </head>
 <body>
     <div class="auth_form">
-        <form method="post" class="session_form">
+        <form method="post" class="session_form" action="/signup">
             <h1>餐库 › 登录</h1>
             <div class="item">
-                <input type="text" id="name" name="account" class="input" placeholder="邮箱" title="你的帐号邮箱" required=""/>
+                <input type="text" id="email" name="email" class="input" placeholder="邮箱" title="你的帐号邮箱" required=""/>
             </div>
             <div class="item">
                 <input type="password" id="password" name="password" class="input" placeholder="密码" title="你的帐号密码" required=""/>
