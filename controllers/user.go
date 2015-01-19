@@ -3,25 +3,36 @@ package controllers
 import (
 	//"canku/models"
 	//"fmt"
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
 	"log"
 )
 
 type UserController struct {
-	beego.Controller
+	BaseController
 }
 
 type user struct {
 	Email    string
+	Nickname string
 	Password string
 }
 
+/**
+* 登录入口
+ */
+
 func (this *UserController) Login() {
-	this.TplNames = "login.tpl"
+	//去掉布局
+	this.Layout = ""
+
+	this.TplNames = "user/login.tpl"
 }
 
+/**
+* 登录接收
+ */
 func (this *UserController) Signup() {
+
 	beego.AutoRender = false
 	requestEmail := this.GetString("email")
 	requestPassword := this.GetString("password")
@@ -38,10 +49,17 @@ func (this *UserController) Signup() {
 	}
 	//this.Ctx.WriteString(email)
 	//this.UserModel.insert(email, nickname, password)
+
 }
 
+/**
+* 注册
+ */
 func (this *UserController) Register() {
-	this.TplNames = "register.tpl"
+	//去掉布局
+	this.Layout = ""
+
+	this.TplNames = "user/register.tpl"
 }
 
 func (this *UserController) Join() {
@@ -49,10 +67,16 @@ func (this *UserController) Join() {
 	//this.user.Insert(user)
 }
 
+/**
+* 退出
+ */
 func (this *UserController) Logout() {
 
 }
 
+/**
+* 忘记密码
+ */
 func (this *UserController) Forget() {
-	this.TplNames = "forget.tpl"
+	this.TplNames = "user/forget.tpl"
 }

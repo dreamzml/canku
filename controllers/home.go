@@ -1,13 +1,15 @@
 package controllers
 
-import (
-	"github.com/astaxie/beego"
-)
-
 type HomeController struct {
-	beego.Controller
+	BaseController
 }
 
+/**
+* 首页
+*/
 func (this *HomeController) Get() {
-	this.TplNames = "layout.tpl"
+	//声明导航焦点
+	this.Data["cur"] = "home";
+	this.TplNames = "home/index.tpl" 
+
 }
