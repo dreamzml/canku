@@ -24,7 +24,7 @@ func (c *BaseController) Prepare() {
 
 	c.Data["nav"] = []Link{
 		Link{Name: "主页", Url: "HomeController.Get", Cur: "home"},
-		Link{Name: "关于我们", Url: "/about", Cur: "about"},
+		Link{Name: "忘记密码", Url: "UserController.Forget", Cur: "about"},
 		Link{Name: "注册", Url: "UserController.Register", Cur: "register"},
 		Link{Name: "登录", Url: "UserController.Login", Cur: "login"},
 	}
