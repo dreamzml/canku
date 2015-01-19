@@ -4,10 +4,11 @@
     <p class="pull-right visible-xs">
       <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
     </p>
-    <div class="jumbotron">
-      <h1>Hello, world!{{.title}}</h1>
-      <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-    </div>
+
+  <div class="row">
+    <div id="container" class="col-xs-12 col-sm-9" style="height: 400px;width: 100%;"></div>
+  </div>
+
     <div class="row">
       <div class="col-xs-6 col-lg-4">
         <h2>Heading</h2>
@@ -57,3 +58,41 @@
     </div>
   </div><!--/.sidebar-offcanvas-->
 </div><!--/row-->
+
+
+<script src="/static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="/static/js/highchart/themes/grid.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: '昨日排行'
+        },
+        xAxis: {
+            categories: ['福荣祥港式烧腊','宏港烧腊便当','万州小厨','味千拉面','汉堡王']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total fruit consumption'
+            }
+        },
+        legend: {
+           // backgroundColor: '#eeeeee',
+            reversed: true
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
+        },
+        series: [{
+            name: 'John',
+            data: [15, 8, 4, 7, 2]
+        }]
+    });
+  });
+</script>
