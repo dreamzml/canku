@@ -16,6 +16,11 @@ type Link struct {
 	Cur  string
 }
 
+type ErrorData struct {
+	Title   string
+	Content string
+}
+
 func (c *BaseController) Prepare() {
 	// page start time
 	c.Layout = "layout/main.tpl"
@@ -36,4 +41,14 @@ func (c *BaseController) Prepare() {
 	// if app, ok := c.AppController.(NestPreparer); ok {
 	//         app.NestPrepare()
 	// }
+}
+
+//显示错误提示
+func (c *BaseController) showmsg(title string, content string) {
+	c.Data["title"] = title
+	c.Data["content"] = content
+	c.Layout = "layout/main.tpl"
+	c.TplNames = "error/user_error.tpl"
+	c.Render()
+	c.StopRun()
 }

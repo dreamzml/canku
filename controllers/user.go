@@ -19,19 +19,14 @@ type user struct {
 	Password string
 }
 
+func (this *UserController) Err() {
+	this.showmsg("User Error code 001", "User Error code 001")
+}
+
 /**
-* 登录入口
+ * 登录入口
  */
-
 func (this *UserController) Login() {
-	// v := this.GetSession("asta")
-	// if v == nil {
-	// 	this.SetSession("asta", int(1))
-	// } else {
-	// 	this.SetSession("asta", v.(int)+1)
-	// }
-
-	// fmt.Println(this.GetSession("asta"))
 	//去掉布局
 	this.Layout = ""
 	this.TplNames = "user/login.tpl"
@@ -39,19 +34,26 @@ func (this *UserController) Login() {
 }
 
 /**
-* 登录接收
+ * 登录接收
  */
 func (this *UserController) Signup() {
-	errmsg := make(map[string]string)
+	//errmsg := make(map[string]string)
 	requestEmail := this.GetString("email")
 	requestPassword := this.GetString("password")
 
-	valid := validation.Validation{}
-	if v := valid.Required(requestEmail, "email"); !v.Ok {
-		errmsg["email"] = "请输入邮箱地址"
-	} else if v := valid.MaxSize(requestEmail, 40, "email"); !v.Ok {
-		errmsg["email"] = "邮箱地址长度不能大于40个字符"
+	svalid := validation.Validation{}
+
+	svalid.Required(requestEmail, "email")
+	svalid.MaxSize(requestEmail, 40, "email")
+	svalid.Required(requestPassword, "password")
+
+	if svalid.HasErrors() {
+		for _, err := range svalid.Errors {
+			//fmt.Println(err.Key, err.Message)
+			this.showmsg("Error Message", "["+err.Key+"]"+err.Message)
+		}
 	}
+
 	var user models.User
 	user.Email = requestEmail
 	user.Password = models.Md5([]byte(requestPassword))
@@ -69,7 +71,7 @@ func (this *UserController) Signup() {
 }
 
 /**
-* 注册
+ * 注册
  */
 func (this *UserController) Register() {
 	//去掉布局
@@ -90,17 +92,21 @@ func (this *UserController) Join() {
 	requestNickname := this.GetString("nickname")
 	requestPassword := this.GetString("password")
 
-	valid := validation.Validation{}
-	if v := valid.Required(requestEmail, "email"); !v.Ok {
-		errmsg["email"] = "请输入邮箱地址"
-	} else if v := valid.MaxSize(requestEmail, 40, "email"); !v.Ok {
-		errmsg["email"] = "邮箱地址长度不能大于40个字符"
-	}
+	jvalid := validation.Validation{}
 
-	if v := valid.Required(requestNickname, "nickname"); !v.Ok {
-		errmsg["nickname"] = "请输入昵称"
-	} else if v := valid.MaxSize(requestNickname, 20, "nickname"); !v.Ok {
-		errmsg["nickname"] = "昵称长度不能大于20个字符"
+	jvalid.Required(requestEmail, "email")
+	jvalid.MaxSize(requestEmail, 40, "email")
+	jvalid.Required(requestNickname, "nickname")
+	jvalid.MaxSize(requestNickname, 20, "nickname")
+	jvalid.Required(requestPassword, "password")
+
+	fmt.Println(jvalid.HasErrors())
+
+	if jvalid.HasErrors() {
+		for _, err := range jvalid.Errors {
+			//fmt.Println(err.Key, err.Message)
+			this.showmsg("Error Message", "["+err.Key+"]"+err.Message)
+		}
 	}
 
 	if len(errmsg) == 0 {
@@ -119,18 +125,23 @@ func (this *UserController) Join() {
 }
 
 /**
-* 退出
+ * 退出
  */
 func (this *UserController) Logout() {
-
+	beego.AutoRender = false
 }
 
 /**
-* 忘记密码
+ * 忘记密码
  */
 func (this *UserController) Forget() {
+	this.Layout = ""
 	this.TplNames = "user/forget.tpl"
 	this.Render()
+}
+
+func (this *UserController) Sendmail() {
+	beego.AutoRender = false
 }
 
 /**

@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="auth_form">
-  <form class="session_form" method="post">
+  <form class="session_form" method="post" action="/sendmail">
     <h1>餐库 › 重置密码</h1>
     <div class="item">
       <input type="text" id="email" name="email" class="input" placeholder="帐户邮箱" title="你的帐户邮箱" required=""/>
