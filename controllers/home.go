@@ -6,10 +6,10 @@ type HomeController struct {
 
 /**
 * 首页
-*/
+ */
 func (this *HomeController) Get() {
 	//声明导航焦点
-	this.Data["cur"] = "home";
-	this.TplNames = "home/index.tpl" 
-
+	this.Data["cur"] = "home"
+	this.TplNames = "home/index.tpl"
+	this.Render()
 }

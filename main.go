@@ -10,7 +10,7 @@ func main() {
 	beego.SetStaticPath("js", "static/js")
 
 	beego.SessionOn = true
-	//beego.AutoRender = false
+	beego.AutoRender = false
 
 	beego.Run()
 }

@@ -27,14 +27,13 @@ func (this *UserController) Login() {
 	this.Layout = ""
 
 	this.TplNames = "user/login.tpl"
+	this.Render()
 }
 
 /**
 * 登录接收
  */
 func (this *UserController) Signup() {
-
-	beego.AutoRender = false
 	errmsg := make(map[string]string)
 	requestEmail := this.GetString("email")
 	requestPassword := this.GetString("password")
@@ -58,6 +57,7 @@ func (this *UserController) Register() {
 	//去掉布局
 	this.Layout = ""
 	this.TplNames = "user/register.tpl"
+	this.Render()
 }
 
 /**
@@ -93,8 +93,8 @@ func (this *UserController) Join() {
 		if err := user.Insert(); err != nil {
 			this.Ctx.WriteString(err.Error())
 		}
-		this.Redirect("/", 302)
 	}
+	this.Redirect("/", 302)
 }
 
 /**
@@ -109,4 +109,5 @@ func (this *UserController) Logout() {
  */
 func (this *UserController) Forget() {
 	this.TplNames = "user/forget.tpl"
+	this.Render()
 }
