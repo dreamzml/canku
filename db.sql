@@ -1,53 +1,42 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3307
--- Generation Time: Jan 18, 2015 at 08:18 PM
--- Server version: 5.5.38
--- PHP Version: 5.6.2
+-- 主机: localhost
+-- 生成日期: 2015 年 01 月 20 日 14:53
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.3.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `canku`
+-- 数据库: `canku`
 --
-
-CREATE DATABASE  IF NOT EXISTS `canku` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `canku`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- 表的结构 `user`
 --
 
-CREATE TABLE `user` (
-`id` int(5) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `email` varchar(40) NOT NULL,
   `nickname` varchar(20) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `regtime` int(11) NOT NULL,
-  `isadmin` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `lastlogin` datetime NOT NULL,
+  `isadmin` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Indexes for dumped tables
+-- 转存表中的数据 `user`
 --
 
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;

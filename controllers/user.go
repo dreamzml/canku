@@ -66,8 +66,9 @@ func (this *UserController) Signup() {
 		this.SetSession("email", Ru.Email)
 		this.SetSession("isadmin", Ru.Isadmin)
 		this.Redirect("/", 302)
+	} else {
+		this.showmsg("Error", "Email OR Password IS WRONG")
 	}
-	this.Redirect("/login", 302)
 }
 
 /**
