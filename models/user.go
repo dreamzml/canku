@@ -8,28 +8,41 @@ import (
 )
 
 type User struct {
-	Id        int64     `orm:"auto"`
-	Email     string    `orm:"size(40)"`
-	Nickname  string    `orm:"unique;size(20)"`
-	Password  string    `orm:"size(32)"`
-	Lastlogin time.Time `orm:"auto_now_add;type(datetime)"`
-	Isadmin   int8
+	Id        int       `orm:"column(id);pk"`
+	Email     string    `orm:"column(email);size(40)"`
+	Nickname  string    `orm:"column(nickname);unique;size(20)"`
+	Password  string    `orm:"column(password);size(32)"`
+	Lastlogin time.Time `orm:"column(lastlogin);auto_now_add;type(datetime)"`
+	Isadmin   int8      `orm:"column(isadmin);default(0)"`
+}
+
+type ReturnUser struct {
+	Id       int
+	Email    string
+	Nickname string
+	Isadmin  int8
+}
+
+func (m *User) Select() ReturnUser {
+	var u ReturnUser
+	orm.NewOrm().Raw("SELECT * FROM user WHERE email = ? AND password = ? ", m.Email, m.Password).QueryRow(&u)
+	return u
 }
 
 func (m *User) Insert() error {
-	o := orm.NewOrm()
-	if _, err := o.Insert(m); err != nil {
+	if _, err := orm.NewOrm().Insert(m); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *User) Read() error {
-	var user User
-	o := orm.NewOrm()
-	err := o.Raw("SELECT id, nickname FROM user WHERE email = ? AND password = ?", m.Email, m.Password).QueryRow(&user)
-	if err != nil {
+func (m *User) Read(fields ...string) error {
+	if err := orm.NewOrm().Read(m, fields...); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (m *User) Query() orm.QuerySeter {
+	return orm.NewOrm().QueryTable(m)
 }

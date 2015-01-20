@@ -2,8 +2,9 @@ package controllers
 
 import (
 	"canku/models"
-	//"fmt"
+	"fmt"
 	"github.com/astaxie/beego"
+	//"github.com/astaxie/beego/session"
 	"github.com/astaxie/beego/validation"
 	//"log"
 )
@@ -23,9 +24,16 @@ type user struct {
  */
 
 func (this *UserController) Login() {
+	// v := this.GetSession("asta")
+	// if v == nil {
+	// 	this.SetSession("asta", int(1))
+	// } else {
+	// 	this.SetSession("asta", v.(int)+1)
+	// }
+
+	// fmt.Println(this.GetSession("asta"))
 	//去掉布局
 	this.Layout = ""
-
 	this.TplNames = "user/login.tpl"
 	this.Render()
 }
@@ -47,7 +55,17 @@ func (this *UserController) Signup() {
 	var user models.User
 	user.Email = requestEmail
 	user.Password = models.Md5([]byte(requestPassword))
-	user.Read()
+
+	var Ru models.ReturnUser
+	Ru = user.Select()
+
+	if Ru.Id > 0 {
+		this.SetSession("nickname", Ru.Nickname)
+		this.SetSession("email", Ru.Email)
+		this.SetSession("isadmin", Ru.Isadmin)
+		this.Redirect("/", 302)
+	}
+	this.Redirect("/login", 302)
 }
 
 /**
@@ -94,6 +112,9 @@ func (this *UserController) Join() {
 			this.Ctx.WriteString(err.Error())
 		}
 	}
+	this.SetSession("nickname", requestNickname)
+	this.SetSession("email", requestEmail)
+	this.SetSession("isadmin", 0)
 	this.Redirect("/", 302)
 }
 
@@ -110,4 +131,13 @@ func (this *UserController) Logout() {
 func (this *UserController) Forget() {
 	this.TplNames = "user/forget.tpl"
 	this.Render()
+}
+
+/**
+ * 用户自己的历史订单
+ * @param  {[type]} this *UserController) History( [description]
+ * @return {[type]}      [description]
+ */
+func (this *UserController) History() {
+
 }
