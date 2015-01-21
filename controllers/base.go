@@ -45,7 +45,8 @@ func (c *BaseController) Prepare() {
 		nav = append(nav, Link{Name: "登录", Url: "UserController.Login", Cur: "login"})
 	}
 
-	if sess_isadmin != 0 {
+
+	if sess_isadmin != 0 && sess_isadmin != nil {
 		nav = append(nav, Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shop"})
 	}
 
