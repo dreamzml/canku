@@ -28,12 +28,30 @@ func (c *BaseController) Prepare() {
 	c.Data["title"] = "canku点餐系统R"
 	c.Data["cur"] = ""
 
-	c.Data["nav"] = []Link{
+	nav := []Link{
 		Link{Name: "主页", Url: "HomeController.Get", Cur: "home"},
-		Link{Name: "忘记密码", Url: "UserController.Forget", Cur: "about"},
-		Link{Name: "注册", Url: "UserController.Register", Cur: "register"},
-		Link{Name: "登录", Url: "UserController.Login", Cur: "login"},
+		Link{Name: "今日订单", Url: "HomeController.Today", Cur: "today"},
 	}
+
+	sess_nickname := c.GetSession("nickname")
+	sess_isadmin := c.GetSession("isadmin")
+	//fmt.Println(sess_nickname)
+
+	if sess_nickname != nil {
+		nav = append(nav, Link{Name: "历史订单", Url: "UserController.History", Cur: "history"})
+		nav = append(nav, Link{Name: "退出", Url: "UserController.Logout", Cur: "logout"})
+	} else {
+		nav = append(nav, Link{Name: "注册", Url: "UserController.Register", Cur: "register"})
+		nav = append(nav, Link{Name: "登录", Url: "UserController.Login", Cur: "login"})
+	}
+
+	if sess_isadmin != 0 {
+		nav = append(nav, Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shop"})
+	}
+
+	c.Data["nav"] = nav
+
+	//fmt.Println(c.Data["nav"])
 
 	// Setting properties.
 	//c.Data["AppDescription"] = utils.AppDescription

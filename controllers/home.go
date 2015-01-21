@@ -24,5 +24,7 @@ func (this *HomeController) Get() {
  * @return {[type]}      [description]
  */
 func (this *HomeController) Today() {
-
+	this.Data["cur"] = "today"
+	this.TplNames = "home/today.tpl"
+	this.Render()
 }

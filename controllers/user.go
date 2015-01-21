@@ -130,6 +130,11 @@ func (this *UserController) Join() {
  */
 func (this *UserController) Logout() {
 	beego.AutoRender = false
+	this.DelSession("nickname")
+	this.DelSession("email")
+	this.DelSession("isadmin")
+	this.Redirect("/", 302)
+	this.StopRun()
 }
 
 /**
