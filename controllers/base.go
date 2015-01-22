@@ -16,11 +16,11 @@ type Link struct {
 	Cur  string
 }
 
-type ErrorData struct {
-	Title   string
-	Content string
-}
-
+/**
+ * 页面载入之前
+ * @param  {[type]} c *BaseController) Prepare( [description]
+ * @return {[type]}   [description]
+ */
 func (c *BaseController) Prepare() {
 	// page start time
 	c.Layout = "layout/main.tpl"
@@ -36,6 +36,9 @@ func (c *BaseController) Prepare() {
 	sess_nickname := c.GetSession("nickname")
 	sess_isadmin := c.GetSession("isadmin")
 	//fmt.Println(sess_nickname)
+	if sess_isadmin != 0 && sess_isadmin != nil {
+		nav = append(nav, Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shop"})
+	}
 
 	if sess_nickname != nil {
 		nav = append(nav, Link{Name: "历史订单", Url: "UserController.History", Cur: "history"})
@@ -43,10 +46,6 @@ func (c *BaseController) Prepare() {
 	} else {
 		nav = append(nav, Link{Name: "注册", Url: "UserController.Register", Cur: "register"})
 		nav = append(nav, Link{Name: "登录", Url: "UserController.Login", Cur: "login"})
-	}
-
-	if sess_isadmin != 0 && sess_isadmin != nil {
-		nav = append(nav, Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shop"})
 	}
 
 	c.Data["nav"] = nav
@@ -61,7 +60,11 @@ func (c *BaseController) Prepare() {
 	// }
 }
 
-//显示错误提示
+/**
+ * 显示错误提示
+ * @param  {[type]} c *BaseController) showmsg(title string, content string [description]
+ * @return {[type]}   [description]
+ */
 func (c *BaseController) showmsg(title string, content string) {
 	c.Data["title"] = title
 	c.Data["content"] = content
