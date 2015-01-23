@@ -8,22 +8,26 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-func init() {
-	dbdriver := beego.AppConfig.String("dbdriver")
-	dbhost := beego.AppConfig.String("dbhost")
-	dbport := beego.AppConfig.String("dbport")
-	dbuser := beego.AppConfig.String("dbuser")
-	dbpass := beego.AppConfig.String("dbpass")
-	dbname := beego.AppConfig.String("dbname")
-	if dbport == "" {
-		dbport = "3306"
+
+//数据库连接
+func Connect() {
+	var dns string
+	db_type := beego.AppConfig.String("dbdriver")
+	db_host := beego.AppConfig.String("dbhost")
+	db_port := beego.AppConfig.String("dbport")
+	db_user := beego.AppConfig.String("dbuser")
+	db_pass := beego.AppConfig.String("dbpass")
+	db_name := beego.AppConfig.String("dbname")
+
+	switch db_type {
+	case "mysql":
+		orm.RegisterDriver("mysql", orm.DR_MySQL)
+		dns = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", db_user, db_pass, db_host, db_port, db_name)
+		break
+	default:
+		beego.Critical("Database driver is not allowed:", db_type)
 	}
-	dburl := dbuser + ":" + dbpass + "@tcp(" + dbhost + ":" + dbport + ")/" + dbname + "?charset=utf8"
-	orm.RegisterDataBase("default", dbdriver, dburl, 30)
-	orm.RegisterModel(new(User))
-	if beego.AppConfig.String("runmode") == "dev" {
-		orm.Debug = true
-	}
+	orm.RegisterDataBase("default", db_type, dns)
 }
 
 func Md5(buf []byte) string {

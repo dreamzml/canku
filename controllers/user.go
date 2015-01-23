@@ -57,10 +57,10 @@ func (this *UserController) Signup() {
 	var user models.User
 	user.Email = requestEmail
 	user.Password = models.Md5([]byte(requestPassword))
-
+fmt.Printf("user:%s\n\n",user)
 	var Ru models.ReturnUser
 	Ru = user.Select()
-
+fmt.Printf("Ru:%s\n\n",user)
 	if Ru.Id > 0 {
 		this.SetSession("nickname", Ru.Nickname)
 		this.SetSession("email", Ru.Email)

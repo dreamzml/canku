@@ -8,12 +8,21 @@ import (
 )
 
 type User struct {
-	Id        int       `orm:"column(id);pk"`
+	Id        int64       //`orm:"column(id);pk"`
 	Email     string    `orm:"column(email);size(40)"`
 	Nickname  string    `orm:"column(nickname);unique;size(20)"`
 	Password  string    `orm:"column(password);size(32)"`
 	Lastlogin time.Time `orm:"column(lastlogin);auto_now_add;type(datetime)"`
 	Isadmin   int8      `orm:"column(isadmin);default(0)"`
+}
+
+
+func (u *User) TableName() string {
+	return "user"
+}
+
+func init() {
+	orm.RegisterModel(new(User))
 }
 
 type ReturnUser struct {
