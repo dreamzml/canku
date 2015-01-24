@@ -34,7 +34,7 @@ type ReturnUser struct {
 
 func (m *User) Select() ReturnUser {
 	var u ReturnUser
-	orm.NewOrm().Raw("SELECT * FROM user WHERE email = ? AND password = ? ", m.Email, m.Password).QueryRow(&u)
+	orm.NewOrm().Raw("SELECT * FROM user WHERE (email = ? OR nickname = ?) AND password = ? ", m.Email, m.Email, m.Password).QueryRow(&u)
 	return u
 }
 
