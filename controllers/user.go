@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"canku/models"
+	"github.com/dreamzml/canku/models"
 	"fmt"
 	"github.com/astaxie/beego"
 	//"github.com/astaxie/beego/session"

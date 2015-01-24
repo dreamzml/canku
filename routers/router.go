@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"canku/controllers"
+	"github.com/dreamzml/canku/controllers"
 	"github.com/astaxie/beego"
 )
 

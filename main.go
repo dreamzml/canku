@@ -4,9 +4,9 @@ import (
 	"mime"
 	"os"
 
-	_ "canku/routers"
+	_ "github.com/dreamzml/canku/routers"
 	"github.com/astaxie/beego"
-	"canku/models"
+	"github.com/dreamzml/canku/models"
 )
 
 func main() {
