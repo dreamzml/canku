@@ -43,7 +43,18 @@
           <ul class="nav navbar-nav">
             {{range .nav}}
             <li {{if eq .Cur $.cur}}class="active"{{end}}>
-                <a href="{{urlfor .Url}}">{{.Name}}</a>
+                <a {{if eq .Url "dropdown"}} 
+                    href="#" class="dropdown-toggle" data-toggle="dropdown"
+                  {{else}} 
+                    href="{{urlfor .Url}}" 
+                  {{end}} >{{.Name}}</a>
+                {{if eq .Url "dropdown"}} 
+                <ul class="dropdown-menu" role="menu">
+                  {{range .Items}}
+                  <li><a href="{{urlfor .Url}}">{{.Name}}</a></li>
+                  {{end}}
+                </ul>
+                {{end}}
             </li>
             {{end}}
           </ul>

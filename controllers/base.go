@@ -16,6 +16,7 @@ type Link struct {
 	Name string
 	Url  string
 	Cur  string
+	Items []Link
 }
 
 /**
@@ -40,7 +41,12 @@ func (c *BaseController) Prepare() {
 
 	var adminCode int8 = 1
 	if sess_isadmin == adminCode {
-		nav = append(nav, Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shop"})
+		shopManageItems := []Link{
+			Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shopmanage"},
+			Link{Name: "今日订单", Url: "HomeController.Today", Cur: "todayshop"},
+		}
+
+		nav = append(nav, Link{Name: "商家管理", Url: "dropdown", Cur: "shop", Items: shopManageItems})
 	}
 
 	if sess_nickname != nil {
