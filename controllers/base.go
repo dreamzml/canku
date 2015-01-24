@@ -2,6 +2,8 @@ package controllers
 
 import (
 	//"fmt"
+	"strings"
+	//"strconv"
 	"github.com/astaxie/beego"
 )
 
@@ -35,14 +37,15 @@ func (c *BaseController) Prepare() {
 
 	sess_nickname := c.GetSession("nickname")
 	sess_isadmin := c.GetSession("isadmin")
-	//fmt.Println(sess_nickname)
-	if sess_isadmin != 0 && sess_isadmin != nil {
+
+	var adminCode int8 = 1
+	if sess_isadmin == adminCode {
 		nav = append(nav, Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shop"})
 	}
 
 	if sess_nickname != nil {
 		nav = append(nav, Link{Name: "历史订单", Url: "UserController.History", Cur: "history"})
-		nav = append(nav, Link{Name: "退出", Url: "UserController.Logout", Cur: "logout"})
+		nav = append(nav, Link{Name: strings.Join([]string{"退出(", sess_nickname.(string), ")"}, ""), Url: "UserController.Logout", Cur: "logout"})
 	} else {
 		nav = append(nav, Link{Name: "注册", Url: "UserController.Register", Cur: "register"})
 		nav = append(nav, Link{Name: "登录", Url: "UserController.Login", Cur: "login"})
