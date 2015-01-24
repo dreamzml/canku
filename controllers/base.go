@@ -41,11 +41,11 @@ func (c *BaseController) Prepare() {
 
 	var adminCode int8 = 1
 	if sess_isadmin == adminCode {
+		//商家管理展开选择
 		shopManageItems := []Link{
 			Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shopmanage"},
 			Link{Name: "今日订单", Url: "HomeController.Today", Cur: "todayshop"},
 		}
-
 		nav = append(nav, Link{Name: "商家管理", Url: "dropdown", Cur: "shop", Items: shopManageItems})
 	}
 

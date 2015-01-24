@@ -4,7 +4,7 @@ import (
 	//"fmt"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import mysql driver
-	"time"
+	//"time"
 )
 
 type User struct {
@@ -12,7 +12,7 @@ type User struct {
 	Email     string    `orm:"column(email);size(40)"`
 	Nickname  string    `orm:"column(nickname);unique;size(20)"`
 	Password  string    `orm:"column(password);size(32)"`
-	Lastlogin time.Time `orm:"column(lastlogin);auto_now_add;type(datetime)"`
+	Lastlogin int64		`orm:"column(lastlogin);type(int)"`
 	Isadmin   int8      `orm:"column(isadmin);default(0)"`
 }
 
