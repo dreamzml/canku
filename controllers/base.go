@@ -25,7 +25,14 @@ type Link struct {
  * @return {[type]}   [description]
  */
 func (c *BaseController) Prepare() {
-	// page start time
+	//预设layout布局模板信息
+	c.PrepareLayout()
+}
+
+/**
+* 预设布局模板信息
+*/
+func (c *BaseController) PrepareLayout() {
 	c.Layout = "layout/main.tpl"
 
 	c.Data["title"] = "canku点餐系统R"
@@ -43,8 +50,8 @@ func (c *BaseController) Prepare() {
 	if sess_isadmin == adminCode {
 		//商家管理展开选择
 		shopManageItems := []Link{
-			Link{Name: "商家管理", Url: "ShopController.Shop", Cur: "shopmanage"},
-			Link{Name: "今日订单", Url: "HomeController.Today", Cur: "todayshop"},
+			Link{Name: "商家管理", Url: "admin/ShopController.Index", Cur: "shopmanage"},
+			Link{Name: "用户管理", Url: "admin/UserController.Index", Cur: "todayshop"},
 		}
 		nav = append(nav, Link{Name: "商家管理", Url: "dropdown", Cur: "shop", Items: shopManageItems})
 	}
@@ -58,15 +65,6 @@ func (c *BaseController) Prepare() {
 	}
 
 	c.Data["nav"] = nav
-
-	//fmt.Println(c.Data["nav"])
-
-	// Setting properties.
-	//c.Data["AppDescription"] = utils.AppDescription
-
-	// if app, ok := c.AppController.(NestPreparer); ok {
-	//         app.NestPrepare()
-	// }
 }
 
 /**

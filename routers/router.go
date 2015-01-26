@@ -2,6 +2,7 @@ package routers
 
 import (
 	"github.com/dreamzml/canku/controllers"
+	"github.com/dreamzml/canku/controllers/admin"
 	"github.com/astaxie/beego"
 )
 
@@ -19,4 +20,7 @@ func init() {
 	beego.Router("/history", &controllers.UserController{}, "get:History")    // 历史订单
 
 	beego.Router("/err", &controllers.UserController{}, "get:Err")
+
+	beego.Router("/admin/user", &admin.UserController{}, "*:Index")
+	beego.Router("/admin/shop", &admin.ShopController{}, "*:Index")
 }

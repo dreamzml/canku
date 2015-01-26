@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/dreamzml/canku/models"
 	"fmt"
+	"time"
 	"github.com/astaxie/beego"
 	//"github.com/astaxie/beego/session"
 	"github.com/astaxie/beego/validation"
@@ -115,6 +116,7 @@ func (this *UserController) Join() {
 		user.Email = requestEmail
 		user.Nickname = requestNickname
 		user.Password = models.Md5([]byte(requestPassword))
+		user.Lastlogin = time.Now().Unix()
 		if err := user.Insert(); err != nil {
 			this.Ctx.WriteString(err.Error())
 		}
