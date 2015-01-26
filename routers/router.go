@@ -22,5 +22,8 @@ func init() {
 	beego.Router("/err", &controllers.UserController{}, "get:Err")
 
 	beego.Router("/admin/user", &admin.UserController{}, "*:Index")
+	beego.Router("/admin/user/update", &admin.UserController{}, "*:Update")
+	beego.Router("/admin/user/delete", &admin.UserController{}, "*:Delete")
 	beego.Router("/admin/shop", &admin.ShopController{}, "*:Index")
+
 }

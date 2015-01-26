@@ -49,6 +49,7 @@
           <th>下单次数</th>
           <th>下单金额</th>
           <th>管理员</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
@@ -57,10 +58,14 @@
           <td>{{$user.Id}}</td>
           <td>{{$user.Nickname}}</td>
           <td>{{$user.Email}}</td>
-          <td>{{$user.Lastlogin}}</td>
-          <td>下单次数</td>
-          <td>下单金额</td>
+          <td>{{$user.Data}}</td>
+          <td>0.00</td>
+          <td>0.00</td>
           <td>{{if eq $user.Isadmin 1}}是{{else}}否{{end}}</td>
+          <td>
+            <a href="{{urlfor "admin/UserController.Update" }}">修改</a>
+            <a href="{{urlfor "admin/UserController.Delete" }}">删除</a>
+          </td>
         </tr>
         {{end}}
       </tbody>
