@@ -6,6 +6,7 @@ canku 基与golang的点餐系统
 - go
 - git
 - mysql
+- freetype-go
 
 ## 获取安装
   执行以下命令，就能够在你的GOPATH/src/github.com/dreamzml 目录下发现canku项目
@@ -23,7 +24,12 @@ $ go get github.com/dreamzml/canku
 ```bash
 $ go get github.com/astaxie/beego
 ```
-  
+
+- 安装freetype-go包
+```bash
+$ go get github.com/scpayson/freetype-go
+```
+
 ## 创建数据库并同步数据
 
 - 配置数据库链接信息（配置文件：$GOPATH/src/github.com/dreamzml/canku/conf/app.conf）
