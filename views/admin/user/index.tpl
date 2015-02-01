@@ -66,6 +66,7 @@
         {{end}}
       </tbody>
     </table>
+    {{template "../../layout/pager.tpl" .}}
   </div>
 </div>
 </div>

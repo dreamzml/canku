@@ -18,19 +18,9 @@ type UserController struct {
 * 会员管理
 */
 func (this *UserController) Index() {
-	page, _ := this.GetInt64("page")
-	page_size, _ := this.GetInt64("rows")
-	sort := this.GetString("sort")
-	order := this.GetString("order")
-	if len(order) > 0 {
-		if order == "desc" {
-			sort = "-" + sort
-		}
-	} else {
-		sort = "Id"
-	}
-	users, count := m.Getuserlist(page, page_size, sort)
-	 	
+
+	users, count := m.Getuserlist(this.Page, this.Page_size, this.Sort)
+
 	//输出数据类型
 	//fmt.Printf("time format type is : %s \n\n", reflect.TypeOf(users))
 	for _,d := range users {
@@ -41,12 +31,13 @@ func (this *UserController) Index() {
 	this.Data["count"] = count
 	this.Data["rows"] = &users
 
-	//this.showmsg("500","test")
-	//this.Data["pager"] = this.setPager(1,35)
 
-    this.Data["iamgeSource"] = TexToImg("舒")
-    this.Data["iamgeSource2"] = TexToImg("生")
-    this.Data["iamgeSource3"] = TexToImg("平")
+	//this.showmsg("500","test")
+	this.Data["pager"] = this.Buildpager(count)
+
+    this.Data["iamgeSource"] = TexToImg("杨")
+    this.Data["iamgeSource2"] = TexToImg("明")
+    this.Data["iamgeSource3"] = TexToImg("傲")
     this.Data["iamgeSource4"] = TexToImg(" D")
     this.Data["iamgeSource5"] = TexToImg(" 8")
     this.Data["iamgeSource6"] = TexToImg(" K")

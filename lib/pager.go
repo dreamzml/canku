@@ -2,7 +2,7 @@
 * @Author: dreamzml
 * @Date:   2015-02-01 05:44:56
 * @Last Modified by:   zoro
-* @Last Modified time: 2015-02-01 05:48:11
+* @Last Modified time: 2015-02-01 17:07:58
 */
 
 package lib
@@ -52,7 +52,7 @@ func (p *Pager) Page() int {
     if p.Request.Form == nil {
         p.Request.ParseForm()
     }
-    p.page, _ = strconv.Atoi(p.Request.Form.Get("p"))
+    p.page, _ = strconv.Atoi(p.Request.Form.Get("page"))
     if p.page > p.PageNums() {
         p.page = p.PageNums()
     }
@@ -95,9 +95,9 @@ func (p *Pager) PageLink(page int) string {
     link, _ := url.ParseRequestURI(p.Request.RequestURI)
     values := link.Query()
     if page == 1 {
-        values.Del("p")
+        values.Del("page")
     } else {
-        values.Set("p", strconv.Itoa(page))
+        values.Set("page", strconv.Itoa(page))
     }
     link.RawQuery = values.Encode()
     return link.String()

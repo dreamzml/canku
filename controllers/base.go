@@ -7,17 +7,17 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/dreamzml/canku/lib"
 
-	//"os"
 	"github.com/beego/i18n"
 )
 
 type BaseController struct {
 	beego.Controller
+	Page int64
+	Page_size int64
+	Sort string
+	langTypes []langType
 }
 
-var(
-	langTypes []langType
-)
 
 //导航链接结构体
 type Link struct {
@@ -51,7 +51,7 @@ func (c *BaseController) PrepareLayout() {
 	//初始化语言包
 	c.settingLocales()
 	c.setLangVer()
-
+	c.Getpagerparam()
 	c.Layout = "layout/main.tpl"
 
 	c.Data["title"] = "canku点餐系统R"
@@ -101,10 +101,37 @@ func (c *BaseController) showmsg(title string, content string) {
 }
 
 /**
+ * 分页排序参数接收处理
+ */
+func (this *BaseController) Getpagerparam(){
+	page, _ := this.GetInt64("page")
+	page_size, _ := this.GetInt64("rows")
+	sort := this.GetString("sort")
+	order := this.GetString("order")
+
+	if len(order) > 0 {
+		if order == "desc" {
+			sort = "-" + sort
+		}
+	} else {
+		sort = "-Id"
+	}
+	
+	if(page_size == 0){
+		page_size = int64(10)
+	}
+
+	this.Page = page
+	this.Page_size = page_size
+	this.Sort = sort
+
+}
+
+/**
  * 初始化分页
  */
-func (this *BaseController) setPager(per int, nums int64) *lib.Pager {
-	p := lib.NewPager(this.Ctx.Request, per, nums)
+func (this *BaseController) Buildpager(nums int64) *lib.Pager {
+	p := lib.NewPager(this.Ctx.Request, int(this.Page_size), nums)
 	this.Data["pager"] = p
 	return p
 }
@@ -114,12 +141,12 @@ func (this *BaseController) setPager(per int, nums int64) *lib.Pager {
  */
 func (this *BaseController) settingLocales() {
 	// load locales with locale_LANG.ini files
-	langTypes = []langType{
+	this.langTypes = []langType{
 		langType{Lang:"en-US", Name:"English"},
 		langType{Lang:"zh-CN", Name:"中文"},
 	}
 
-	for _, langT := range langTypes {
+	for _, langT := range this.langTypes {
 		lang := langT.Lang
 
 	    if i18n.IsExist(lang) {
@@ -165,7 +192,7 @@ func (this *BaseController) setLangVer() bool {
         }
     }
 
-    // 无法获取最配置文件默认
+    // 无法获取语言类型，取配置文件默认
     if len(lang) == 0 {
         lang = beego.AppConfig.String("lang")
     }

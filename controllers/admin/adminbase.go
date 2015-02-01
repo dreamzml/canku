@@ -18,10 +18,10 @@ type AdminbaseController struct {
  * @param  {[type]} c *BaseController) Prepare( [description]
  * @return {[type]}   [description]
  */
-func (c *AdminbaseController) Prepare() {
+func (this *AdminbaseController) Prepare() {
 	//预设layout布局模板信息
-	c.PrepareLayout()
+	this.PrepareLayout()
 
-	c.Data["subCur"] = "--";
+	this.Data["subCur"] = "--";
 }
 
