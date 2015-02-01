@@ -1,3 +1,10 @@
+/* 
+* @Author: dreamzml
+* @Date:   2015-02-01 05:44:56
+* @Last Modified by:   zoro
+* @Last Modified time: 2015-02-01 06:16:02
+*/
+
 package lib
 
 import (

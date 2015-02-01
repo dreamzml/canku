@@ -7,6 +7,7 @@ import (
 	_ "github.com/dreamzml/canku/routers"
 	"github.com/astaxie/beego"
 	"github.com/dreamzml/canku/models"
+	"github.com/beego/i18n"
 )
 
 func main() {
@@ -19,6 +20,7 @@ func main() {
 	beego.SessionOn = true
 	beego.AutoRender = false
 
+	beego.AddFuncMap("i18n", i18n.Tr)
 	beego.Run()
 }
 

@@ -2,13 +2,13 @@
 {{template "../layout/left_menu.tpl" .}}
 
 <div class="col-sm-9 col-md-10 main">
-  <h1 class="page-header">最新会员</h1>
+  <h1 class="page-header">{{i18n .Lang "user.new_users"}}</h1>
 
   <div class="row placeholders">
     <div class="col-sm-10 col-md-7 main">
       <div class="col-xs-4 col-sm-2 placeholder">
         <img data-src="holder.js/200x200/auto/sky" class="img-responsive img-circle" alt="200x200" src="data:image/png;base64,{{.iamgeSource}}" data-holder-rendered="true">
-        <span class="text-muted">舒志平</span>
+        <span class="text-muted">舒志平{{.count}}</span>
       </div>
       <div class="col-xs-4 col-sm-2 placeholder">
         <img data-src="holder.js/200x200/auto/vine" class="img-responsive img-circle" alt="200x200" src="data:image/png;base64,{{.iamgeSource2}}" data-holder-rendered="true">
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <h2 class="sub-header">会员列表</h2>
+  <h2 class="sub-header">{{i18n .Lang "user.user_list"}}</h2>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>

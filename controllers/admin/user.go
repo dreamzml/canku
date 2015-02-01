@@ -33,7 +33,6 @@ func (this *UserController) Index() {
 	 	
 	//输出数据类型
 	//fmt.Printf("time format type is : %s \n\n", reflect.TypeOf(users))
-
 	for _,d := range users {
 	 	d["Lastlogin_data"] = time.Unix(d["Lastlogin"].(int64), 0).Format("2006-01-02 15:04:05")
 	 	d["Id_str"] = strconv.Itoa(int(d["Id"].(int64)))
@@ -42,6 +41,8 @@ func (this *UserController) Index() {
 	this.Data["count"] = count
 	this.Data["rows"] = &users
 
+	//this.showmsg("500","test")
+	//this.Data["pager"] = this.setPager(1,35)
 
     this.Data["iamgeSource"] = TexToImg("舒")
     this.Data["iamgeSource2"] = TexToImg("生")
