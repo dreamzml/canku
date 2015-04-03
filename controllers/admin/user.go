@@ -1,7 +1,7 @@
 package admin
 
 import (
-	//"fmt"
+	"fmt"
 	"time"
 	"strconv"
 
@@ -68,32 +68,44 @@ func (this *UserController) Update() {
 
 }
 
-func (this *UserController) Delete() {
+func (this *UserController) Create() {
+	var isPost = this.ParseForm("save")
+	//if isPost != nil {
+		fmt.Printf("fd %s \n", isPost)
+	//}
 
+	this.Data["subCur"] = "user_create"
+	this.TplNames = "admin/user/create.tpl"
+	this.Render()
 }
 
-/*
-func (this *UserController) AddUser() {
+func (this *UserController) CreatePost(){
 	u := m.User{}
 	if err := this.ParseForm(&u); err != nil {
 		//handle error
-		this.Rsp(false, err.Error())
+		this.Rsp(int64(201), err.Error())
 		return
 	}
-	id, err := m.AddUser(&u)
-	if err == nil && id > 0 {
-		this.Rsp(true, "Success")
+	fmt.Printf("u: %s \n", u)
+	//密码与重置登录时间
+	//u.Password = m.Md5([]byte(u.Password))
+	//u.Lastlogin = time.Now().Unix()
+
+	err := u.Insert()
+	if err == nil {
+		this.Rsp(int64(200), "Success")
+		//this.Redirect(this.UrlFor("admin/UserController.Index"), 302)
+		//this.Redirect()
 		return
 	} else {
-		this.Rsp(false, err.Error())
+		this.Rsp(int64(201), err.Error())
 		return
 	}
-
 }
 
 
-func (this *UserController) DelUser() {
-	Id, _ := this.GetInt64("Id")
+func (this *UserController) Delete() {
+/*	Id, _ := this.GetInt64("Id")
 	status, err := m.DelUserById(Id)
 	if err == nil && status > 0 {
 		this.Rsp(true, "Success")
@@ -101,7 +113,7 @@ func (this *UserController) DelUser() {
 	} else {
 		this.Rsp(false, err.Error())
 		return
-	}
+	}*/
 }
-*/
+
  

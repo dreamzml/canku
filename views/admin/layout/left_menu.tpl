@@ -22,7 +22,9 @@
                 <a {{if eq .subCur "user_index"}}class="text-success"{{end}} 
                     href="{{urlfor "admin/UserController.Index"}}">会员列表</a>
             </li>
-            <li class="text-right"><a href="#overview-mobile">添加会员</a>
+            <li class="text-right">
+                <a {{if eq .subCur "user_create"}}class="text-success"{{end}} 
+                    href="{{urlfor "admin/UserController.Create"}}">添加会员</a>
             </li>
         </ul>
     </li>

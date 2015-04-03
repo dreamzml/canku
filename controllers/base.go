@@ -205,3 +205,13 @@ func (this *BaseController) setLangVer() bool {
     this.Data["Lang"] = lang
     return true
 }
+
+/**
+ * 输出json结果
+ * @param code 错误代码 status：200 成功
+ * @param msg 信息
+ */
+func (this *BaseController) Rsp(code int64, msg string) {
+    this.Data["json"] = &map[string]interface{}{"status": code, "info": msg}
+    this.ServeJson()
+}
